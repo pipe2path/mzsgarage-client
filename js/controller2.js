@@ -13,7 +13,6 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', 'DashboardStats'
             $timeout(pollData, 1000);
         });
     }
-
 }]);
 
 app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
