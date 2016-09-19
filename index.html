@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="gdalert">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Garage Door Alert</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/flipclock.css" rel="stylesheet">
+
+
+	  <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+   
+  </head>
+  
+  <style>
+	.jumbotron { text-align: left;}
+	.footer {
+	  position: absolute;
+	  bottom: 0;
+	  width: 95%;
+	  /* Set the fixed height of the footer here */
+	  height: 40px;
+	  background-color: #f5f5f5;
+	}
+  </style>
+	
+  <body>
+	<div ng-controller="DashboardCtrl">
+		<div class="container">
+			
+			<div class="header clearfix text-center">
+				<h3 class="text-muted">:D</h3>
+			</div>
+			<div class="jumbotron">
+				<div class="input-group">
+					<label>{{data.status}}</label>
+				</div>
+			</div>
+
+		   <footer class="footer">
+			<p>&copy; 2016</p>
+		  </footer>
+
+		</div> <!-- /container -->
+	</div> <!-- ng-controller -->
+   
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="js/controller2.js"></script>
+
+  </body>
+</html>
