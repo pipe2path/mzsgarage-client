@@ -23,7 +23,8 @@
   </head>
   
   <style>
-	.jumbotron { text-align: left;}
+
+	.jumbotron label{color: #31b0d5; font-size: 36px;}
 	.footer {
 	  position: absolute;
 	  bottom: 0;
@@ -37,16 +38,24 @@
   <body>
 	<div ng-controller="DashboardCtrl">
 		<div class="container">
-			
-			<div class="header clearfix text-center">
-				<h3 class="text-muted">:D</h3>
-			</div>
 			<div class="jumbotron">
-				<div class="input-group">
-					<label>{{data.status}}</label>
+					<div class="text-center" ng-if="statusData.response.status==1">
+						<label>GARAGE IS OPEN!!</label>
+					</div>
+					<div ng-if="statusData.response.status==0">
+						<label>GARAGE IS CLOSED</label>
+					</div>
+			</div>
+			<div class="input-group center-block">
+				<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture()">Take picture</button>
+			</div>
+			<br/>
+<!--<div class="col-md-6" ng-if="!!garagePicture">-->
+			<div class="col-md-6">
+				<div class="center-block">
+					<img src="https://s3-us-west-1.amazonaws.com/mzsgarage-images/img-20161010050119.jpg" class="img-thumbnail" alt="Garage image">
 				</div>
 			</div>
-
 		   <footer class="footer">
 			<p>&copy; 2016</p>
 		  </footer>
