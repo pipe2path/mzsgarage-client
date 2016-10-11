@@ -1,40 +1,53 @@
 var app = angular.module('gdalert', []);
 
-app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', 'DashboardStats',
-			function($scope, $timeout, $http, DashboardStats) {
-    
-	$scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
-    $scope.garagePic = {"timestamp": "", "image": ""};
+app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter', 'DashboardStats',
+    function($scope, $timeout, $http, $q, $filter, DashboardStats) {
 
-    pollData();
+        $scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
+        $scope.garagePic = {"timestamp": "", "imagePath": ""};
 
-    function pollData() {
-    	DashboardStats.poll().then(function(data) {
-            $scope.statusData = data;
-            $timeout(pollData, 1000);
-        });
-    }
+        pollData();
 
-    $scope.takePicture = function(){
-        var garagePic = null;
+        function pollData() {
+            DashboardStats.poll().then(function(data) {
+                $scope.statusData = data;
+                $timeout(pollData, 1000);
+            });
+        }
 
-        $http({ method: 'POST',
-            url: 'https://mzsgarage-service.herokuapp.com/needimage'})
-            .then(function successCallback(response){}, function errorCallback(response){});
+        $scope.takePicture = function(){
+            var imageCaptureId;
+
+            function needImage() {
+                $http({
+                    method: 'POST',
+                    url: 'https://mzsgarage-service.herokuapp.com/needimage'
+                })
+                    .then(function successCallback(response) {
+                            imageCaptureId = response.data;
+                        },
+                        function errorCallback(response) {
+                        });
+            };
 
 
-        delay(5000);
+            // get the image from s3
+            function getImage() {
+                $http({
+                    method: 'GET',
+                    url: 'https://mzsgarage-service.herokuapp.com/image?id=' + imageCaptureId
+                })
+                    .then(function successCallback(response) {
+                            $scope.garagePic.imagePath = response.data.imagePath;
+                        },
+                        function errorCallback(response) {
+                        });
+            };
 
-        // get the image from s3
-        $http({ method: 'GET',
-            url: 'https://mzsgarage-service.herokuapp.com/getImage'})
-
-
-
-        return $scope.garagePic = garagePic;
-    }
-
-}]);
+            // run the promises after waiting for 10 seconds after the first call (so the the image can be uploaded)
+            $q.when(needImage()).then($timeout(getImage, 10000));
+        }
+    }]);
 
 app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -42,7 +55,7 @@ app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
     var data = { response: { }, calls: 0 };
 
     var poller = function () {
-		var url = 'https://mzsgarage-service.herokuapp.com/status'
+        var url = 'https://mzsgarage-service.herokuapp.com/status'
         return $http.get(url).then(function (responseData) {
             data.calls++;
             data.response = responseData.data[0];
