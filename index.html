@@ -24,7 +24,7 @@
   
   <style>
 
-	.jumbotron label{color: #31b0d5; font-size: 36px;}
+	.jumbotron label{color: #31b0d5; font-size: 32px;}
 	.footer {
 	  position: absolute;
 	  bottom: 0;
@@ -47,18 +47,21 @@
 					</div>
 			</div>
 			<div class="input-group center-block">
-				<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture()">Take picture</button>
+				<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture();toggle=!toggle">{{toggleText}}</button>
 			</div>
 			<br/>
 <!--<div class="col-md-6" ng-if="!!garagePicture">-->
-			<div class="col-md-6">
+			<div ng-if='garagePic.captureTimestamp!=""' class="col-md-6">
 				<div class="center-block">
 					<img src="{{garagePic.imagePath}}" class="img-thumbnail" alt="Garage image">
 				</div>
+				<div>
+					<label>{{garagePic.captureTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</label>
+				</div>
 			</div>
-		   <footer class="footer">
-			<p>&copy; 2016</p>
-		  </footer>
+		   <!--<footer class="footer">-->
+			<!--<p>&copy; 2016</p>-->
+		  	<!--</footer>-->
 
 		</div> <!-- /container -->
 	</div> <!-- ng-controller -->

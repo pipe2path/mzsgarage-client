@@ -4,7 +4,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
 
         $scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
-        $scope.garagePic = {"timestamp": "", "imagePath": ""};
+        $scope.garagePic = {"captureTimestamp": "", "imagePath": ""};
 
         pollData();
 
@@ -17,6 +17,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.takePicture = function(){
             var imageCaptureId;
+            var capturedDate;
 
             function needImage() {
                 $http({
@@ -39,7 +40,10 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                 })
                     .then(function successCallback(response) {
                             $scope.garagePic.imagePath = response.data.imagePath;
-                        },
+                            capturedDate = response.data.captureCompleted;
+                            $scope.garagePic.captureTimestamp = capturedDate;
+                            $scope.toggle = true;
+                    },
                         function errorCallback(response) {
                         });
             };
@@ -47,6 +51,11 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             // run the promises after waiting for 10 seconds after the first call (so the the image can be uploaded)
             $q.when(needImage()).then($timeout(getImage, 10000));
         }
+
+        $scope.toggle = true;
+        $scope.$watch('toggle', function() {
+            $scope.toggleText = $scope.toggle ? 'Take picture' : 'Taking picture ...';
+        });
     }]);
 
 app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
