@@ -1,73 +1,76 @@
 
 <!DOCTYPE html>
 <html lang="en" ng-app="gdalert">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../../favicon.ico">
 
-    <title>Garage Door Alert</title>
+	<title>Garage Door Alert</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/flipclock.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/flipclock.css" rel="stylesheet">
 
 
-	  <!-- Custom styles for this template -->
-    <link href="css/jumbotron-narrow.css" rel="stylesheet">
-   
-  </head>
-  
-  <style>
+	<!-- Custom styles for this template -->
+	<link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+</head>
+
+<style>
 
 	.jumbotron label{color: #31b0d5; font-size: 32px;}
 	.footer {
-	  position: absolute;
-	  bottom: 0;
-	  width: 95%;
-	  /* Set the fixed height of the footer here */
-	  height: 40px;
-	  background-color: #f5f5f5;
+		position: absolute;
+		bottom: 0;
+		width: 95%;
+		/* Set the fixed height of the footer here */
+		height: 40px;
+		background-color: #f5f5f5;
 	}
-  </style>
-	
-  <body>
-	<div ng-controller="DashboardCtrl">
-		<div class="container">
-			<div class="jumbotron">
-					<div class="text-center" ng-if="statusData.response.status==1">
-						<label>GARAGE IS OPEN!!</label>
-					</div>
-					<div ng-if="statusData.response.status==0">
-						<label>GARAGE IS CLOSED</label>
-					</div>
-			</div>
-			<div class="input-group center-block">
-				<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture();toggle=!toggle">{{toggleText}}</button>
-			</div>
-			<br/>
-<!--<div class="col-md-6" ng-if="!!garagePicture">-->
-			<div ng-if='garagePic.captureTimestamp!=""' class="col-md-6">
-				<div class="center-block">
-					<img src="{{garagePic.imagePath}}" class="img-thumbnail" alt="Garage image">
-				</div>
-				<div>
-					<label>{{garagePic.captureTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</label>
-				</div>
-			</div>
-		   <!--<footer class="footer">-->
-			<!--<p>&copy; 2016</p>-->
-		  	<!--</footer>-->
+</style>
 
-		</div> <!-- /container -->
-	</div> <!-- ng-controller -->
-   
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	<script src="js/controller2.js"></script>
+<body>
+<div ng-controller="DashboardCtrl">
+	<div class="container">
+		<div class="jumbotron">
+			<div class="text-center" ng-if="statusData.response.status==1">
+				<label>GARAGE IS OPEN!!</label>
+			</div>
+			<div ng-if="statusData.response.status==0">
+				<label>GARAGE IS CLOSED</label>
+			</div>
+			<button class="btn btn-default" ng-click="refreshStatus()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+		</div>
 
-  </body>
+		<div class="input-group center-block">
+			<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture();toggle=!toggle">{{toggleText}}</button>
+		</div>
+		<br/>
+		<!--<div class="col-md-6" ng-if="!!garagePicture">-->
+		<div ng-if='garagePic.captureTimestamp!=""' class="col-md-6">
+			<div class="center-block">
+				<img src="{{garagePic.imagePath}}" class="img-thumbnail" alt="Garage image">
+			</div>
+			<div>
+				<label>{{garagePic.captureTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</label>
+			</div>
+		</div>
+		<!--<footer class="footer">-->
+		<!--<p>&copy; 2016</p>-->
+		<!--</footer>-->
+
+	</div> <!-- /container -->
+</div> <!-- ng-controller -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="js/controller2.js"></script>
+<!--<script src="js/bootstrap.min.js"></script>-->
+
+</body>
 </html>

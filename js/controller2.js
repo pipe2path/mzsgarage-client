@@ -3,7 +3,7 @@ var app = angular.module('gdalert', []);
 app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter', 'DashboardStats',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
 
-        $scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
+        //$scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
         $scope.garagePic = {"captureTimestamp": "", "imagePath": ""};
 
         pollData();
@@ -11,8 +11,12 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         function pollData() {
             DashboardStats.poll().then(function(data) {
                 $scope.statusData = data;
-                $timeout(pollData, 5000);
+                $timeout(pollData, 1000);
             });
+        }
+
+        $scope.refreshStatus = function(){
+            pollData();
         }
 
         $scope.takePicture = function(){
@@ -43,7 +47,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                             capturedDate = response.data.captureCompleted;
                             $scope.garagePic.captureTimestamp = capturedDate;
                             $scope.toggle = true;
-                    },
+                        },
                         function errorCallback(response) {
                         });
             };
@@ -68,7 +72,6 @@ app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
         return $http.get(url).then(function (responseData) {
             data.calls++;
             data.response = responseData.data[0];
-
             return data;
         });
     };
