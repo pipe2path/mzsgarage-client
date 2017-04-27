@@ -30,28 +30,13 @@
 		bottom: 0;
 		width: 95%;
 		/* Set the fixed height of the footer here */
-		height: 40px;
+		height: 20px;
 		background-color: #f5f5f5;
 	}
 </style>
 
 <body>
 <div ng-controller="DashboardCtrl">
-	<!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-		<!--<ul class="nav navbar-nav">-->
-			<!--<li class="dropdown">-->
-				<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>-->
-				<!--<ul class="dropdown-menu">-->
-					<!--<li><a href="#">Open/Closed Status</a></li>-->
-					<!--<li><a href="#">Image Status</a></li>-->
-					<!--<li><a href="#">Open Alert Timer</a></a></li>-->
-				<!--</ul>-->
-			<!--</li>-->
-		<!--</ul>-->
-	<!--</div>-->
-	<!--<div class="page-header text-center">-->
-		<!--<h3>Garage Alert</h3>-->
-	<!--</div>-->
 	<div class="container">
 		<div class="jumbotron">
 			<div class="text-center" ng-if="statusData.response.status==1">
@@ -78,13 +63,13 @@
 		</div>
 		<span us-spinner spinner-on="showSpinner"></span>
 		<footer class="footer">
-		<p>Menezes Family &copy; 2016</p>
+		<p>Menezes Family &copy; 2017</p>
 		</footer>
 
 	</div> <!-- /container -->
 </div> <!-- ng-controller -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="js/controller2.js"></script>
 <script src="bower_components/angular-spinner/dist/angular-spinner.min.js"></script>
 <!--<script src="js/bootstrap.min.js"></script>-->
