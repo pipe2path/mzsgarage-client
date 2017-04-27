@@ -1,4 +1,4 @@
-var app = angular.module('gdalert', []);
+var app = angular.module('gdalert', ['angularSpinner']);
 
 app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter', 'DashboardStats',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
@@ -23,6 +23,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             var imageCaptureId;
             var capturedDate;
 
+            $scope.showSpinner = true;
             function needImage() {
                 $http({
                     method: 'POST',
@@ -47,13 +48,14 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                             capturedDate = response.data.captureCompleted;
                             $scope.garagePic.captureTimestamp = capturedDate;
                             $scope.toggle = true;
+                            $scope.showSpinner = false;
                         },
                         function errorCallback(response) {
                         });
             };
 
             // run the promises after waiting for 10 seconds after the first call (so the the image can be uploaded)
-            $q.when(needImage()).then($timeout(getImage, 10000));
+            $q.when(needImage()).then($timeout(getImage, 30000));
         }
 
         $scope.toggle = true;
