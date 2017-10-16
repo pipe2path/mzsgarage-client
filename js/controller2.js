@@ -27,7 +27,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             function needImage() {
                 $http({
                     method: 'POST',
-                    url: 'https://mzsgarage-service.herokuapp.com/needimage'
+                    url: 'https://mzsgarage-service.herokuapp.com/needimage?garageid=1'
                 })
                     .then(function successCallback(response) {
                             imageCaptureId = response.data;
