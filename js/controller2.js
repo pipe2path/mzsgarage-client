@@ -54,8 +54,8 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                         });
             };
 
-            // run the promises after waiting for 10 seconds after the first call (so the the image can be uploaded)
-            $q.when(needImage()).then($timeout(getImage, 15000));
+            // run the promises after waiting for 20 seconds after the first call (so the the image can be uploaded)
+            $q.when(needImage()).then($timeout(getImage, 20000));
         }
 
         $scope.toggle = true;
