@@ -70,7 +70,7 @@ app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
     var data = { response: { }, calls: 0 };
 
     var poller = function () {
-        var url = 'https://mzsgarage-service.herokuapp.com/status'
+        var url = 'https://mzsgarage-service.herokuapp.com/status?id=1'
         return $http.get(url).then(function (responseData) {
             data.calls++;
             data.response = responseData.data[0];
