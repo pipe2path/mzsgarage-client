@@ -7,6 +7,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         $scope.garagePic = {"captureTimestamp": "", "imagePath": ""};
 
         pollData();
+        getOpenings();
 
         function pollData() {
             DashboardStats.poll().then(function(data) {
@@ -17,6 +18,19 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.refreshStatus = function(){
             pollData();
+        }
+
+        $scope.openingsData = { response: { } };
+        function getOpenings(){
+            var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1'
+            return $http.get(url).then(function (responseData) {
+                $scope.openingsData.response = responseData.data;
+                $scope.toggle = true;
+            })
+        }
+
+        $scope.getLast = function(){
+            getOpenings();
         }
 
         $scope.takePicture = function(){
@@ -60,7 +74,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.toggle = true;
         $scope.$watch('toggle', function() {
-            $scope.toggleText = $scope.toggle ? 'Take picture' : 'Taking picture ...';
+            $scope.toggleText = $scope.toggle ? 'Get Last Openings' : 'Getting ...';
         });
     }]);
 
@@ -75,7 +89,7 @@ app.factory('DashboardStats', ['$http', '$timeout', function($http, $timeout) {
             data.calls++;
             data.response = responseData.data[0];
             return data;
-        });
+        })
     };
 
     return {
