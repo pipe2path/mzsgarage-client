@@ -22,7 +22,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.openingsData = { response: { } };
         function getOpenings(){
-            var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1'
+            var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1&rows=5'
             return $http.get(url).then(function (responseData) {
                 $scope.openingsData.response = responseData.data;
                 $scope.toggle = true;
@@ -74,7 +74,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.toggle = true;
         $scope.$watch('toggle', function() {
-            $scope.toggleText = $scope.toggle ? 'Get Last Openings' : 'Getting ...';
+            $scope.toggleText = $scope.toggle ? 'Status History' : 'Refreshing ...';
         });
     }]);
 
