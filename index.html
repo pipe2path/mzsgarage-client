@@ -26,11 +26,11 @@
 	.jumbotron label{color: #31b0d5; font-size: 32px; }
 	.panel label{ #31b0d5; font-size: 32px;}
 	.footer {
-		position: absolute;
+		position: absolute ;
 		bottom: 0;
 		width: 95%;
 		/* Set the fixed height of the footer here */
-		height: 20px;
+		height: 10px;
 		background-color: #f5f5f5;
 	}
 	table, th , td {
@@ -38,7 +38,6 @@
 		border-collapse: collapse;
 		padding: 5px;
 	}
-
 	/*table tr:nth-child(odd) {*/
 	/*	background-color: #f1f1f1;*/
 	/*}*/
@@ -60,23 +59,10 @@
 			</div>
 			<button class="btn btn-default" ng-click="refreshStatus()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 		</div>
-
-<!--		<div class="input-group center-block">-->
-<!--			<button class="btn btn-primary btn-lg btn-block" ng-click="takePicture();toggle=!toggle">{{toggleText}}</button>-->
-<!--		</div>-->
 		<div class="input-group center-block">
 			<button class="btn btn-primary btn-lg btn-block" ng-click="getLast();toggle=!toggle">{{toggleText}}</button>
 		</div>
 		<br/>
-		<!--<div class="col-md-6" ng-if="!!garagePicture">-->
-<!--		<div ng-if='garagePic.captureTimestamp!=""' class="col-md-6">-->
-<!--			<div class="center-block">-->
-<!--				<img src="{{garagePic.imagePath}}" class="img-thumbnail" alt="Garage image">-->
-<!--			</div>-->
-<!--			<div>-->
-<!--&lt;!&ndash;				<label>{{garagePic.captureTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</label>&ndash;&gt;-->
-<!--			</div>-->
-<!--		</div>-->
 		<div>
 			<table style="width:100%">
 				<thead>
@@ -87,14 +73,14 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="o in openingsData.response">
-						<td>{{o.status==1?'Open':'Closed'}}</td><td>{{o.dateTimeStamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+						<td>{{o.status==1?'Open':'Closed'}}</td><td>{{o.dateTimeStamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<span us-spinner spinner-on="showSpinner"></span>
 		<footer class="footer">
-		<p>Menezes Family &copy; 2017 v1.45</p>
+		<p>Menezes Family &copy; 2019 v1.55</p>
 		</footer>
 
 	</div> <!-- /container -->
