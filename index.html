@@ -72,11 +72,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="o in openingsData.response">
+					<tr dir-paginate="o in openingsData.response | itemsPerPage : 6">
 						<td>{{o.status==1?'Open':'Closed'}}</td><td>{{o.dateTimeStamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 					</tr>
 				</tbody>
 			</table>
+            <dir-pagination-controls
+                    max-size="5"
+                    direction-links="false"
+                    boundary-links="true" >
+            </dir-pagination-controls>
 		</div>
 		<span us-spinner spinner-on="showSpinner"></span>
 		<footer class="footer">
@@ -89,6 +94,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="js/controller2.js"></script>
 <script src="bower_components/angular-spinner/dist/angular-spinner.min.js"></script>
+<script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
 <!--<script src="js/bootstrap.min.js"></script>-->
 
 </body>

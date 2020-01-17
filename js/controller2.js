@@ -1,4 +1,4 @@
-var app = angular.module('gdalert', ['angularSpinner']);
+var app = angular.module('gdalert', [/*'angularSpinner',*/ 'angularUtils.directives.dirPagination']);
 
 app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter', 'DashboardStats',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
@@ -22,7 +22,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
         $scope.openingsData = { response: { } };
         function getOpenings(){
-            var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1&rows=5'
+            var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1&rows=25'
             return $http.get(url).then(function (responseData) {
                 $scope.openingsData.response = responseData.data;
                 $scope.toggle = true;
@@ -76,7 +76,8 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         $scope.$watch('toggle', function() {
             $scope.toggleText = $scope.toggle ? 'Status History' : 'Refreshing ...';
         });
-    }]);
+
+}]);
 
 app.filter("filterdate", function() {
     var re = /\/Date\(([0-9]*)\)\//;
