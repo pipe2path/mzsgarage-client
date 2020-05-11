@@ -12,7 +12,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         function pollData() {
             DashboardStats.poll().then(function(data) {
                 $scope.statusData = data;
-                $timeout(pollData, 5000);
+                $timeout(pollData, 4000);
             });
         }
 
