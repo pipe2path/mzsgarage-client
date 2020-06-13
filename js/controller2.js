@@ -20,11 +20,12 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             pollData();
         }
 
-        $scope.openingsData = { response: { } };
+        //$scope.openingsData = { response: { } };
+        $scope.openingsData = {};
         function getOpenings(){
             var url = 'https://mzsgarage-service.herokuapp.com/openings?id=1&rows=25'
-            return $http.get(url).then(function (responseData) {
-                $scope.openingsData.response = responseData.data;
+            return $http.get(url).then(function (response) {
+                $scope.openingsData = response.data;
                 $scope.toggle = true;
             })
         }

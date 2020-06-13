@@ -72,7 +72,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr dir-paginate="o in openingsData.response | itemsPerPage : 6">
+					<tr dir-paginate="o in openingsData | itemsPerPage : 6">
 						<td>{{o.status==1?'Open':'Closed'}}</td><td>{{o.dateTimeStamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 					</tr>
 				</tbody>
@@ -85,7 +85,7 @@
 		</div>
 		<span us-spinner spinner-on="showSpinner"></span>
 		<footer class="footer">
-		<p>Menezes Family &copy; 2019 v1.55</p>
+		<p>Menezes Family &copy; 2020 v1.55</p>
 		</footer>
 
 	</div> <!-- /container -->
