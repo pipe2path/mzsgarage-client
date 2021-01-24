@@ -4,7 +4,6 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
 
 		window.addEventListener('load', e => {
-			new PWAConfApp();
 			registerSW(); 
 		});
 		
