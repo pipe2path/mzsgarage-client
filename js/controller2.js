@@ -3,11 +3,30 @@ var app = angular.module('gdalert', [/*'angularSpinner',*/ 'angularUtils.directi
 app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter', 'DashboardStats',
     function($scope, $timeout, $http, $q, $filter, DashboardStats) {
 
+		window.addEventListener('load', e => {
+			new PWAConfApp();
+			registerSW(); 
+		});
+		
         //$scope.data = { "timestamp": "2016/09/18 18:00", "status":"1"};
         $scope.garagePic = {"captureTimestamp": "", "imagePath": ""};
 
         pollData();
         getOpenings();
+
+
+		async function registerSW() { 
+		  if ('serviceWorker' in navigator) { 
+			try {
+			  await navigator.serviceWorker.register('./sw.js'); 
+			} catch (e) {
+			  alert('ServiceWorker registration failed. Sorry about that.'); 
+			}
+		  } else {
+			document.querySelector('.alert').removeAttribute('hidden'); 
+		  }
+		}
+
 
         function pollData() {
             DashboardStats.poll().then(function(data) {
@@ -19,7 +38,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         $scope.refreshStatus = function(){
             pollData();
         }
-
+		
         //$scope.openingsData = { response: { } };
         $scope.openingsData = {};
         function getOpenings(){
