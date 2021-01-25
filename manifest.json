@@ -4,14 +4,14 @@
     "start_url": "/index.html",
     "icons": [
         {
-            "src": "./img/logo1.png",
+            "src": "./img/logo1.jpg",
             "sizes": "144x144",
-            "type": "image/png"
+            "type": "image/jpg"
         },
 		{
-            "src": "./img/logo2.png",
+            "src": "./img/logo2.jpg",
             "sizes": "125x125",
-            "type": "image/png"
+            "type": "image/jpg"
         }
     ],
     "theme_color": "#ffffff",
