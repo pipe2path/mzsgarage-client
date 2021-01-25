@@ -17,7 +17,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 		async function registerSW() { 
 		  if ('serviceWorker' in navigator) { 
 			try {
-			  await navigator.serviceWorker.register('./sw.js'); 
+			  await navigator.serviceWorker.register('sw.js'); 
 			} catch (e) {
 			  alert('ServiceWorker registration failed. Sorry about that.'); 
 			}
