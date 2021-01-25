@@ -1,6 +1,6 @@
 {
     "name": "Menezes Garage Status",
-    "short_name" : "mzsgarage-PWA",
+    "short_name" : "Garage Status",
     "start_url": "/index.html",
     "icons": [
         {
